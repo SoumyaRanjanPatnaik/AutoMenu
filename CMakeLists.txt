@@ -6,5 +6,5 @@ add_library(
     src/automenu.cpp
     )
 
-add_executable(test test/test.cpp)
-target_link_libraries(test menu)
+add_executable(example_1 example/example_1.cpp)
+target_link_libraries(example_1 menu)
