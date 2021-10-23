@@ -8,7 +8,7 @@
 
 using namespace am;
 
-Menu::Menu(std::vector<MENU_ITEM> init, std::string title){
+Menu::Menu(std::vector<MENU_ITEM> init, std::string title="AUTO MENU"){
     options = init;
     this->title = title;
 }
@@ -61,6 +61,7 @@ void Menu::run() const{
         do{
             std::cout<<"\nAre you sure you want to quit(y/n)? ";
             std::cin>>cont;
+            std::cin.get();
         }
         while(cont!='y'&&cont!='Y'&&cont!='n'&&cont!='N');
         std::cout<<"Exiting..";
@@ -84,8 +85,10 @@ void Menu::run() const{
         }
         if(CLEAR_ON_FINISH){
             std::cout<<"\nPress ENTER to continue...";
-            std::cin.ignore(INT64_MAX,'\n');
-            std::cin.get();
+            using namespace std;
+            cin.clear();
+            cin.ignore(INT32_MAX,'\n');
+            cin.get();
             system("clear");
         }
     }
