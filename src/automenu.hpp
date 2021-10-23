@@ -52,6 +52,8 @@ namespace am {
         void operator=(Menu src);
         //Call function
         void callFunc(std::size_t option) const;
+        // Add Menu Items In Bulk
+        void bulkAdd(std::vector<MENU_ITEM> bulk);
         
     private:
         std::vector<MENU_ITEM> options;

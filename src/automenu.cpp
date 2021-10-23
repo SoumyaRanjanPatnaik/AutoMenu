@@ -56,41 +56,39 @@ size_t Menu::once() const{
 
 void Menu::run() const{
     char exit = 'n';
-    const auto getValiOpt= [](){
-        char cont = 'y';
+    const auto getExit= [](){
+        char exit = 'y';
         do{
             std::cout<<"\nAre you sure you want to quit(y/n)? ";
-            std::cin>>cont;
+            std::cin>>exit;
             std::cin.get();
         }
-        while(cont!='y'&&cont!='Y'&&cont!='n'&&cont!='N');
-        std::cout<<"Exiting..";
-        return cont;
+        while(exit!='y'&&exit!='Y'&&exit!='n'&&exit!='N');
+        return exit;
     };
 
-    if(CLEAR_ON_FINISH){
-        system("clear");
-    }
     
-    while(exit != 'y'||exit != 'y'){
+    while(true){
+        if(CLEAR_ON_FINISH){
+            system("clear");
+        }
         try{
             size_t opt = once();
             if(opt == options.size()+1){
-                exit = getValiOpt();
-                continue;
+                exit = getExit();
             }
         }
         catch(invalid_option e){
             std::cout<<e.what();
         }
-        if(CLEAR_ON_FINISH){
-            std::cout<<"\nPress ENTER to continue...";
-            using namespace std;
-            cin.clear();
-            cin.ignore(INT32_MAX,'\n');
-            cin.get();
-            system("clear");
+        if(exit=='y' || exit == 'Y'){
+            std::cout<<"Exiting..";
+            break;
         }
+        std::cout<<"\nPress ENTER to continue...";
+        std::cin.clear();
+        std::cin.ignore(INT32_MAX,'\n');
+        std::cin.get();
     }
 }
 
@@ -110,4 +108,10 @@ void Menu::setClear(bool clear){
 
 void Menu::setTitle(std::string title){
     this->title = title;
+}
+
+void Menu::bulkAdd(std::vector<MENU_ITEM> bulk){
+    for(auto it: bulk){
+        options.push_back(it);
+    }
 }

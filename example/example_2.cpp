@@ -27,10 +27,12 @@ int main(){
         getline(cin>>ws,name);
         cout<<"Hi! "<<name;
     };
-    newMenu.setTitle("Example AutoMenu: Add entries one by one");
-    newMenu.addItem({squareFunc,"Print square of a number"});
-    newMenu.addItem({test, "Print Hello World"});
-    newMenu.addItem({sayHi, "Say Hi!"});
+    newMenu.setTitle("Example AutoMenu: Bulk Add Entries");
+    newMenu.bulkAdd({
+        {squareFunc,"Print square of a number"},
+        {test, "Print Hello World"},
+        {sayHi, "Say Hi!"}
+    });
     newMenu.setClear(true);
     newMenu.run();
 }
