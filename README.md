@@ -73,3 +73,10 @@ using namespace am;
    ```cpp
    am::newMenu.run();
    ```
+#  Examples
+
+View examples folder.
+
+# Screenshots
+
+![Menu](./assets/example_1.png)
